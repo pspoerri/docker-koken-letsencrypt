@@ -1,6 +1,8 @@
 # Docker Koken Let's Encrypt
 
-This koken setup integrates into the [docker-compose-letsencrypt-nginx-proxy-companion](https://github.com/evertramos/docker-compose-letsencrypt-nginx-proxy-companion): 
+A docker setup for [koken](http://koken.me/), a content management and web site publishing for photographers.
+
+This setup integrates into the [docker-compose-letsencrypt-nginx-proxy-companion](https://github.com/evertramos/docker-compose-letsencrypt-nginx-proxy-companion): 
 We assume that another service is terminating the SSL. This setup is intended for servers that run multiple services on one machine.
 
 ## How to use it
