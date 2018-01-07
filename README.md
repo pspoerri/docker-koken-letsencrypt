@@ -43,8 +43,10 @@ Please note that the setup only supports one domain name. If you want to support
 4. Start nginx by running `./start.sh`
 
 
+## Attribution
 
-This image is based on
+This image was inspired by the following docker images:
 
+ - [koken/docker-koken-lemp](https://github.com/koken/docker-koken-lemp)
  - [kdelfour/docker-koken](https://github.com/kdelfour/docker-koken)
  - [nicokaiser/docker-koken](https://github.com/nicokaiser/docker-koken)
