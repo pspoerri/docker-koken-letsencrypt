@@ -41,7 +41,8 @@ LETSENCRYPT_EMAIL=user@example.com
 # The network for the docker-compose-letsencrypt-nginx-proxy-companion 
 NETWORK=webproxy
 ```
-Please note that the setup only supports one domain name. If you want to support multiple domains then you will need to adapt the `docker-compose.yml` file. 
+Please note that the setup only supports one domain name. If you want to support multiple domains then you will need to adapt the `docker-compose.yml` file.
+
 4. Start nginx by running `./start.sh`
 
 ## Commands
