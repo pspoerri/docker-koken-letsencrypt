@@ -42,6 +42,10 @@ NETWORK=webproxy
 Please note that the setup only supports one domain name. If you want to support multiple domains then you will need to adapt the `docker-compose.yml` file. 
 4. Start nginx by running `./start.sh`
 
+## Commands
+
+ - `database_backup.sh` to create a backup of the database
+ - `database_restore.sh` to restore the backup of the database **untested, use at your own risk**
 
 ## Attribution
 
