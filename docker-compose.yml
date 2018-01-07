@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+    web:
+        container_name: ${CONTAINER_NAME}-web
+        build: .
+        hostname: ${DOMAIN}
+        restart: unless-stopped
+        volumes:
+          - ${KOKEN_DATA_DIR}:/var/www/html
+        environment:
+            VIRTUAL_HOST: ${DOMAIN}
+            LETSENCRYPT_HOST: ${DOMAIN}
+            LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+    db:
+        container_name: ${CONTAINER_NAME}-db
+        image: mariadb
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        volumes:
+          - ${MYSQL_DATA_DIR}:/var/lib/mysql
+networks:
+    default:
+        external:
+            name: ${NETWORK}
+
