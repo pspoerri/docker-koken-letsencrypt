@@ -4,10 +4,11 @@ services:
     web:
         container_name: ${CONTAINER_NAME}-web
         build: .
-        hostname: ${DOMAIN}
         restart: unless-stopped
         volumes:
           - ${KOKEN_DATA_DIR}:/var/www/html
+        extra_hosts:
+          - ${DOMAIN}:127.0.0.1
         environment:
             VIRTUAL_HOST: ${DOMAIN}
             LETSENCRYPT_HOST: ${DOMAIN}

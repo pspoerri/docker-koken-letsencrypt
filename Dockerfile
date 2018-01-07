@@ -4,19 +4,17 @@ RUN apt-get update && apt-get install -y \
     graphicsmagick graphicsmagick-imagemagick-compat \
     pwgen wget unzip ffmpeg libcurl4-gnutls-dev \
     libmcrypt4 libmcrypt-dev zlib1g zlib1g-dev \
-    mcrypt && rm -rf /var/lib/apt/lists/*
+    mcrypt ssl-cert \
+    && rm -rf /var/lib/apt/lists/*
 
-# Enable SSL for loopback connections
-RUN a2ensite default-ssl
-RUN a2enmod ssl
-EXPOSE 443
+
+## PHP Settings
 # Install mcrypt https://stackoverflow.com/a/47673183/592024
 RUN pecl install mcrypt-1.0.1 
 RUN docker-php-ext-enable mcrypt
 
 # Setup other php extensions
 RUN docker-php-ext-install curl exif mysqli pdo_mysql zip
-
 
 # set recommended PHP.ini settings
 # see https://secure.php.net/manual/en/opcache.installation.php
@@ -28,11 +26,19 @@ RUN { \
         echo 'opcache.fast_shutdown=1'; \
         echo 'opcache.enable_cli=1'; \
     } > /usr/local/etc/php/conf.d/opcache-recommended.ini
-RUN a2enmod rewrite
 
 RUN touch /usr/local/etc/php/conf.d/uploads.ini \
     && echo "upload_max_filesize = 150M;" >> /usr/local/etc/php/conf.d/uploads.ini \
     && echo "post_max_size = 155M;" >> /usr/local/etc/php/conf.d/uploads.ini
+
+# Enable SSL for loopback connections
+RUN a2ensite default-ssl
+RUN a2enmod ssl
+RUN make-ssl-cert generate-default-snakeoil --force-overwrite 
+EXPOSE 443
+
+# Enable mode rewrite
+RUN a2enmod rewrite
 
 VOLUME /var/www/html
 
