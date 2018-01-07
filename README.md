@@ -47,6 +47,11 @@ Please note that the setup only supports one domain name. If you want to support
  - `database_backup.sh` to create a backup of the database
  - `database_restore.sh` to restore the backup of the database **untested, use at your own risk**
 
+## Workarounds integrated into this Docker setup
+
+ - [docker-compose API Error](https://github.com/koken/docker-koken-lemp/issues/12#issuecomment-355849637)
+ - [mcrypt PHP7.2](https://stackoverflow.com/a/47673183/592024)
+
 ## Attribution
 
 This image was inspired by the following docker images:
